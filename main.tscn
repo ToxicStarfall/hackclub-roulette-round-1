@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjghnh7hxhtpq"]
+
+[ext_resource type="Script" uid="uid://d2my2yk7ds3gy" path="res://world/world.gd" id="1_ig7tw"]
+
+[node name="Main" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UserInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="World" type="Node2D" parent="."]
+script = ExtResource("1_ig7tw")

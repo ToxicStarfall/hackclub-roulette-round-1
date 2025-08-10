@@ -1,0 +1,31 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://rt31nysjkvfw"]
+
+[ext_resource type="Texture2D" uid="uid://f36wmk14lwdn" path="res://tileset.png" id="1_0tsup"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_oi3di"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0b4ue"]
+texture = ExtResource("1_0tsup")
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/next_alternative_id = 2
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/next_alternative_id = 2
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/next_alternative_id = 4
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_dyxsd"]
+resource_name = "Objects"
+
+[resource]
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 2
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_oi3di")
+sources/0 = SubResource("TileSetAtlasSource_0b4ue")
+sources/1 = SubResource("TileSetScenesCollectionSource_dyxsd")

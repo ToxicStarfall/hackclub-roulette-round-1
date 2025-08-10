@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://c28hekn400oh"]
+
+[ext_resource type="Script" uid="uid://d3keyhiarnb8i" path="res://world/objects/interactables/interactable.gd" id="1_a3vx1"]
+[ext_resource type="Texture2D" uid="uid://y0g3aclos3u7" path="res://icon.svg" id="2_h3570"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n3466"]
+size = Vector2(16, 16)
+
+[node name="Interactable" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_a3vx1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("2_h3570")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n3466")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -32.0
+offset_top = -24.0
+offset_right = 32.0
+offset_bottom = -7.0
+theme_override_font_sizes/font_size = 10
+text = "Touching"
+horizontal_alignment = 1

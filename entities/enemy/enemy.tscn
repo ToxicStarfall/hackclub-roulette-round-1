@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://n6orr7f60hmv"]
+
+[ext_resource type="Script" uid="uid://coikcvfrjfkiv" path="res://entities/enemy/enemy.gd" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://y0g3aclos3u7" path="res://icon.svg" id="2_qi2p4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iifgy"]
+radius = 12.0
+height = 24.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_im2q6"]
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_4gyqm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.188, 0.188)
+texture = ExtResource("2_qi2p4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_iifgy")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+visible = false
+position = Vector2(-24, 0)
+enabled = false
+shape = SubResource("CapsuleShape2D_im2q6")
+target_position = Vector2(152, 0)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(128, 0)
+collision_mask = 2
+
+[node name="Line2D" type="Line2D" parent="RayCast2D"]
+visible = false
+position = Vector2(-24, 0)

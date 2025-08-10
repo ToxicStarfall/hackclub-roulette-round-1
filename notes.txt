@@ -1,0 +1,10 @@
+REQUIREMENTS
+- 25hr
+- 2D side scrolling
+- Steath
+- Setting: Nature
+
+
+Game Over Gopher (coordinate math td game)
+
+Remake above with carrot main character stealthing through the forest of gophers.
