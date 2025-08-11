@@ -4,12 +4,16 @@ extends Node2D
 
 signal level_entered
 signal level_exited
+signal sublevel_entered
+signal sublevel_exited
 
-@export var parent_level: Level
-@export var sublevel = false
+@export var sublevels: Dictionary[String, PackedScene] = {}
+#@export var sublevels: Dictionary = {}
+#@export var sublevel = false
+#@export var parent_level: Level
 
-@export var Entry: Spawnpoint
-@export var Exit: Spawnpoint
+@export var Entry: Spawnpoint  # Starting point of level.
+@export var Exit: Spawnpoint  # Last eexit to complete the level.
 
 
 func _ready() -> void:
@@ -19,14 +23,17 @@ func _ready() -> void:
 
 func enter():
 	# level initialization stuff
-	pass
+	if self is SubLevel: sublevel_entered.emit()
+	else: level_entered.emit()
 
 
 func exit():
 	# do stuff before exiting level
 	var player = get_node("Player")
 	self.remove_child(player)
-	level_exited.emit(player)
+
+	if self is SubLevel: sublevel_exited.emit()
+	else: level_entered.emit(player)
 
 
 func spawn_player(player: Player):

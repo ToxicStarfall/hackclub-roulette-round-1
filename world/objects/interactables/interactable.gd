@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 	if interactable:
 		$Label.text = "interactable"
 		if Input.is_action_just_pressed("interact"):
-			self.interact(user)
+			self.interact()
 	else:
 		$Label.text = "not interactable"
 
@@ -29,6 +29,6 @@ func _on_body_exited(body: Node2D) -> void:
 	if body is Player: interactable = false
 
 
-func interact(user):
+func interact():
 	# DO interaction effects
 	pass
