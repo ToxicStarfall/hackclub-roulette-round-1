@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2ij1r6mq2jg1"]
-
-[ext_resource type="Script" uid="uid://cgom6u3gqxv0" path="res://world/objects/spawnpoint.gd" id="1_vce6b"]
-
-[node name="Spawnpoint" type="Marker2D"]
-script = ExtResource("1_vce6b")

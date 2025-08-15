@@ -1,11 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfv67c7ov4scv"]
+[gd_scene load_steps=6 format=3 uid="uid://xbmcx1ekw23k"]
 
-[ext_resource type="Script" uid="uid://6ibapau1j30c" path="res://world/objects/interactables/hiding_spot.gd" id="1_vqle6"]
-[ext_resource type="Texture2D" uid="uid://f36wmk14lwdn" path="res://world/tileset.png" id="2_cl4j7"]
+[ext_resource type="Script" uid="uid://6ibapau1j30c" path="res://world/objects/interactables/hiding_spot.gd" id="1_doreq"]
+[ext_resource type="Texture2D" uid="uid://f36wmk14lwdn" path="res://world/tileset.png" id="2_u8n1c"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ub7xh"]
-atlas = ExtResource("2_cl4j7")
-region = Rect2(48, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_doreq"]
+atlas = ExtResource("2_u8n1c")
+region = Rect2(80, 0, 16, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ig1nt"]
 radius = 16.0
@@ -13,15 +13,15 @@ radius = 16.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cl4j7"]
 size = Vector2(48, 20)
 
-[node name="HidingSpot" type="Area2D"]
+[node name="HidingSpot_Grass" type="Area2D"]
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("1_vqle6")
+script = ExtResource("1_doreq")
 metadata/_custom_type_script = "uid://6ibapau1j30c"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
-texture = SubResource("AtlasTexture_ub7xh")
+texture = SubResource("AtlasTexture_doreq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ig1nt")
@@ -35,6 +35,7 @@ theme_override_font_sizes/font_size = 10
 horizontal_alignment = 1
 
 [node name="AttackRange" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("RectangleShape2D_cl4j7")

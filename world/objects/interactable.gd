@@ -11,13 +11,14 @@ func _init() -> void:
 	body_exited.connect( _on_body_exited )
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if interactable:
-		$Label.text = "interactable"
+		$Label.text = "interact [E]"
 		if Input.is_action_just_pressed("interact"):
 			self.interact()
 	else:
-		$Label.text = "not interactable"
+		$Label.text = ""
+	pass
 
 
 func _on_body_entered(body: Node2D) -> void:

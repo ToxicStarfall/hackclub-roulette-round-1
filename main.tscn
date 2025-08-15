@@ -1,18 +1,174 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjghnh7hxhtpq"]
+[gd_scene load_steps=20 format=3 uid="uid://cjghnh7hxhtpq"]
 
 [ext_resource type="Texture2D" uid="uid://y0g3aclos3u7" path="res://icon.svg" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://btl02m65e6gmk" path="res://user_interface.gd" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://d2my2yk7ds3gy" path="res://world/world.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://bngue2osonx23" path="res://background.png" id="3_7mycd"]
+[ext_resource type="Script" uid="uid://cwndfcmnt6jy3" path="res://world/hud.gd" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://f36wmk14lwdn" path="res://world/tileset.png" id="4_lquwl"]
+[ext_resource type="Texture2D" uid="uid://5vbe0polbdma" path="res://splash_anim.png" id="7_272bh"]
+
+[sub_resource type="Gradient" id="Gradient_h2yge"]
+offsets = PackedFloat32Array(0, 0.5, 0.6, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.588235, 0, 0, 0, 0.588235, 0, 0, 0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1bvp3"]
+gradient = SubResource("Gradient_h2yge")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lquwl"]
+texture = SubResource("GradientTexture2D_1bvp3")
+expand_margin_left = 200.0
+expand_margin_right = 200.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vw27"]
+atlas = ExtResource("7_272bh")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kek77"]
+atlas = ExtResource("7_272bh")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c57u"]
+atlas = ExtResource("7_272bh")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efxa6"]
+atlas = ExtResource("7_272bh")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg77c"]
+atlas = ExtResource("7_272bh")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycdy4"]
+atlas = ExtResource("7_272bh")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w48qg"]
+atlas = ExtResource("7_272bh")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vivmo"]
+atlas = ExtResource("7_272bh")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2cqfq"]
+animations = [{
+"frames": [{
+"duration": 8.0,
+"texture": SubResource("AtlasTexture_5vw27")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_kek77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4c57u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efxa6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4c57u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efxa6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4c57u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efxa6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dg77c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycdy4")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_w48qg")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_vivmo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Main" type="Node"]
 
-[node name="UserInterface" type="Control" parent="."]
+[node name="World" type="Node2D" parent="."]
+script = ExtResource("1_ig7tw")
+
+[node name="Parallax2D" type="Parallax2D" parent="World"]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Parallax2D"]
 visible = false
+position = Vector2(640, 360)
+scale = Vector2(11.4286, 9)
+texture = ExtResource("4_lquwl")
+
+[node name="Sprite2D2" type="Sprite2D" parent="World/Parallax2D"]
+position = Vector2(640, 360)
+scale = Vector2(4, 4)
+texture = ExtResource("3_7mycd")
+
+[node name="HUD" type="CanvasLayer" parent="World"]
+unique_name_in_owner = true
+visible = false
+script = ExtResource("4_1bvp3")
+
+[node name="CenterContainer" type="CenterContainer" parent="World/HUD"]
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="World/HUD/CenterContainer"]
+layout_mode = 2
+
+[node name="SplashText" type="Label" parent="World/HUD/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_lquwl")
+text = "SOMTHING"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="World/HUD/CenterContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MenuButton" type="Button" parent="World/HUD/CenterContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 10
+text = "EXIT TO MENU"
+
+[node name="RespawnButton" type="Button" parent="World/HUD/CenterContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 10
+text = "RESPAWN"
+
+[node name="UserInterface" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_h2yge")
 
 [node name="MarginContainer" type="MarginContainer" parent="UserInterface"]
 layout_mode = 1
@@ -40,7 +196,7 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UserInterface/MarginContainer/HBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 30
+theme_override_constants/margin_left = -20
 theme_override_constants/margin_top = 40
 theme_override_constants/margin_bottom = 40
 
@@ -52,40 +208,39 @@ texture = ExtResource("1_0xm2m")
 
 [node name="Label" type="Label" parent="UserInterface/MarginContainer/HBoxContainer/Panel/VBoxContainer/MarginContainer"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.180392, 0.180392, 0.180392, 1)
+theme_override_constants/shadow_outline_size = 60
 theme_override_font_sizes/font_size = 64
-text = "GAME TITLE"
+text = "To The Cheese!"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="UserInterface/MarginContainer/HBoxContainer/Panel"]
-custom_minimum_size = Vector2(300, 0)
+[node name="HBoxContainer" type="HBoxContainer" parent="UserInterface/MarginContainer/HBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
-offset_top = 172.0
-offset_right = 300.0
-offset_bottom = 204.0
-size_flags_horizontal = 0
+size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="UserInterface/MarginContainer/HBoxContainer/Panel/VBoxContainer2"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="UserInterface/MarginContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.6
+
+[node name="Button" type="Button" parent="UserInterface/MarginContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 text = "PLAY"
 
-[node name="Button2" type="Button" parent="UserInterface/MarginContainer/HBoxContainer/Panel/VBoxContainer2"]
-visible = false
+[node name="Control" type="Control" parent="UserInterface/MarginContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-
-[node name="Button3" type="Button" parent="UserInterface/MarginContainer/HBoxContainer/Panel/VBoxContainer2"]
-visible = false
-layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Control" type="Control" parent="UserInterface/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="World" type="Node2D" parent="."]
-script = ExtResource("1_ig7tw")
+[node name="TextureRect" type="AnimatedSprite2D" parent="UserInterface"]
+position = Vector2(776, 544)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_2cqfq")
+autoplay = "default"
+frame_progress = 0.285304
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="HUD" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[connection signal="pressed" from="World/HUD/CenterContainer/VBoxContainer/HBoxContainer/MenuButton" to="World" method="_on_menu_button_pressed"]
+[connection signal="pressed" from="World/HUD/CenterContainer/VBoxContainer/HBoxContainer/RespawnButton" to="World" method="_on_respawn_button_pressed"]
+[connection signal="pressed" from="UserInterface/MarginContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer2/Button" to="UserInterface" method="_on_button_pressed"]

@@ -28,6 +28,7 @@ func heal(amount: int):
 func damage(amount: int):
 	if dammageable:
 		health = max(health - amount, 0)
+		print(health)
 		if health == 0:
 			kill()
 	else: print("%s is immune to damage." % [self])

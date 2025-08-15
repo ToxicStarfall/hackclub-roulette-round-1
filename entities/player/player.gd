@@ -2,6 +2,8 @@ extends Entity
 class_name Player
 
 
+signal player_death
+
 enum State {
 	IDLE, RUNNING, JUMPING, FALLING,
 }
@@ -23,14 +25,26 @@ var is_in_stealth = false
 
 
 func _ready() -> void:
+	add_to_group("player")
 	pass
 
 
 func _process(delta: float) -> void:
 	match state:
-		State.IDLE: $Label.text = "idle"
-		State.RUNNING: $Label.text = "running"
+		State.IDLE:
+			$Label.text = "idle"
+			#$AnimatedSprite2D.animation = "idle"
+			$AnimatedSprite2D.play("idle")
+		State.RUNNING:
+			$Label.text = "running"
+			#$AnimatedSprite2D.play("running")
+			$AnimatedSprite2D.animation = "running"
 		State.FALLING: $Label.text = "falling"
+
+	if velocity.x > 0:
+		$AnimatedSprite2D.flip_h = false
+	if velocity.x < 0:
+		$AnimatedSprite2D.flip_h = true
 
 
 func _physics_process(delta: float) -> void:
@@ -47,13 +61,14 @@ func _physics_process(delta: float) -> void:
 		else: state = State.IDLE
 		#can_doublejump = true  # reset doublejump
 		#print(can_doublejump)
-	#elif self.velocity.y > 0:
 	else:
 		state = State.FALLING
 	#else:
 		#state = State.JUMPING
 
 	if Input.is_action_pressed("jump") and (state != State.FALLING): #or can_doublejump):
+		$AudioStreamPlayer2D.stream = load("res://audio/swing-whoosh-110410.mp3")
+		$AudioStreamPlayer2D.playing = true
 		velocity.y -= JUMP_VELOCITY
 		velocity.y *= int(self.can_move)  # Ability checks
 		#if state == State.FALLING: can_doublejump = false
@@ -71,5 +86,15 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		#TODO Do a stealth attack range check
 
 		if body is Enemy:
-			body.kill()
-			#body.queue_free()
+			$AudioStreamPlayer2D.stream = load("res://audio/quick-sword-draw-100618.mp3")
+			$AudioStreamPlayer2D.playing = true
+			await $AudioStreamPlayer2D.finished
+			self.damage( body.attack_damage )
+
+
+func kill():  # OVERIDE
+	if killable:
+		print("%s died." % [self])
+		player_death.emit()
+		self.queue_free()
+	else:  print("%s is immortal." % [self])
