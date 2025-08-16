@@ -88,8 +88,15 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		if body is Enemy:
 			$AudioStreamPlayer2D.stream = load("res://audio/quick-sword-draw-100618.mp3")
 			$AudioStreamPlayer2D.playing = true
+			self.modulate.r = 255
 			await $AudioStreamPlayer2D.finished
 			self.damage( body.attack_damage )
+		if body is TrapEntity:
+			$AudioStreamPlayer2D.stream = load("res://audio/quick-sword-draw-100618.mp3")
+			$AudioStreamPlayer2D.playing = true
+			self.modulate.r = 255
+			await $AudioStreamPlayer2D.finished
+			self.damage( body.body_damage )
 
 
 func kill():  # OVERIDE

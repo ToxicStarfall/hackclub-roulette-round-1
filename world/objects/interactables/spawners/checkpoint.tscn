@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt13a5mitccem"]
+
+[ext_resource type="Script" uid="uid://dqr7wbdajfbv6" path="res://world/objects/interactables/spawners/checkpoint.gd" id="1_jupxq"]
+[ext_resource type="Texture2D" uid="uid://f36wmk14lwdn" path="res://world/tileset.png" id="2_5cyoh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lh18e"]
+atlas = ExtResource("2_5cyoh")
+region = Rect2(96, 32, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jupxq"]
+radius = 12.0
+
+[node name="Checkpoint" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_jupxq")
+metadata/_custom_type_script = "uid://dqr7wbdajfbv6"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_lh18e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jupxq")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = -12.0
+theme_override_font_sizes/font_size = 8

@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://rt31nysjkvfw"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://rt31nysjkvfw"]
 
 [ext_resource type="Texture2D" uid="uid://f36wmk14lwdn" path="res://world/tileset.png" id="1_rj6qb"]
 [ext_resource type="PackedScene" uid="uid://bcbe8kf721dcy" path="res://world/objects/interactables/the_cheese.tscn" id="2_rj6qb"]
+[ext_resource type="PackedScene" uid="uid://of3e72veey8r" path="res://entities/static/trap_entity.tscn" id="3_uvsqm"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_oi3di"]
 
@@ -102,6 +103,7 @@ texture = ExtResource("1_rj6qb")
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_dyxsd"]
 resource_name = "Objects"
 scenes/1/scene = ExtResource("2_rj6qb")
+scenes/2/scene = ExtResource("3_uvsqm")
 
 [resource]
 physics_layer_0/collision_layer = 1

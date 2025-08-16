@@ -4,6 +4,7 @@ extends Node2D
 #var player_instance: Player
 var main_level: Level
 var current_level: Level
+var last_level: Level
 var sublevels = {}
 
 
@@ -51,8 +52,8 @@ func create_player():
 
 func _on_level_changed(requester, linked_level_id):
 	print("%s initiated level change to '%s'" % [requester, linked_level_id])
-
 	if requester is Gate:
+		last_level = current_level  # save the last level to return to
 		var player = current_level.get_node("Player")
 		current_level.remove_child(player)
 		current_level.exit()
@@ -60,6 +61,9 @@ func _on_level_changed(requester, linked_level_id):
 
 		# Return to main level if unspecfied target
 		if linked_level_id == "":
+			#add_child(last_level)
+			#last_level.enter()
+			#last_level.spawn_player(player, requester)
 			add_child(main_level)
 			main_level.enter()
 			main_level.spawn_player(player, requester)

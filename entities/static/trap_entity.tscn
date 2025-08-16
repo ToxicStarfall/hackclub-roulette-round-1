@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://of3e72veey8r"]
+
+[ext_resource type="Script" uid="uid://dr1c74gwolgvn" path="res://entities/static/trap_entity.gd" id="1_xku2n"]
+[ext_resource type="Texture2D" uid="uid://f36wmk14lwdn" path="res://world/tileset.png" id="2_d041v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrchf"]
+atlas = ExtResource("2_d041v")
+region = Rect2(96, 48, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1pt23"]
+size = Vector2(16, 12)
+
+[node name="TrapEntity" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_xku2n")
+dammageable = false
+destroyable = false
+metadata/_custom_type_script = "uid://dr1c74gwolgvn"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_xrchf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_1pt23")
